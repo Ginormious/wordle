@@ -30,7 +30,7 @@ def good_or_bad(guessWord,green_count,yellow_count):
         print("Horrendus word")
 def initializeWords():
     global wordDictionary
-    with open("3000 words list.txt", 'r') as words:
+    with open("3000 wordle words.txt", 'r') as words:
         for i in words:
             i = i.lower()
             i = i.strip()
