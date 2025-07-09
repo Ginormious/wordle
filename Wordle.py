@@ -9,10 +9,9 @@ def initializeWords():
             firstLetter = i[0]
             wordDictionary[firstLetter].append(i)
 initializeWords()
-letter = []
+letter = [] 
 for i in wordDictionary.keys():
     letter.append(i)
-print(letter)
 randomLetter = random.choice(letter)
 random_word = random.choice(wordDictionary[randomLetter])
 
