@@ -49,6 +49,7 @@ def game():
     while guessNum < 7:
         print(f"{CYAN}Enter your "+"{} guess:".format(tryNumber[guessNum-1])+f"{RESET}", end = "")
         guessWord = input()
+        guessWord = guessWord.lower()
         if len(guessWord) != 5 or not guessWord.isalpha():
             print('Please enter a 5 character word')
             continue
