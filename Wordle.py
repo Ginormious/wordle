@@ -3,6 +3,7 @@ import random, os, math
 words = ['Genius', 'Magnificent', 'Impressive', 'Splendid', 'Great', 'Phew']
 tryNumber = ["first", "second", "third", "fourth", "fifth", 'sixth']
 wordDictionary = {"a":[],"b":[],"c":[],"d":[],"e":[],"f":[],"g":[],"h":[],"i":[],"j":[],"k":[],"l":[],"m":[],"n":[],"o":[],"p":[],"q":[],"r":[],"s":[],"t":[],"u":[],"v":[],"w":[],"x":[],"y":[],"z":[]}
+numlist = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
 letter = []
 random_word = ""
 CYAN="\033[36m"
@@ -48,12 +49,12 @@ def game():
     while guessNum < 7:
         print(f"{CYAN}Enter your "+"{} guess:".format(tryNumber[guessNum-1])+f"{RESET}", end = "")
         guessWord = input()
+        if len(guessWord) != 5 or not guessWord.isalpha():
+            print('Please enter a 5 character word')
+            continue
         if guessWord == random_word:
             print(words[guessNum - 1])
             break
-        if len(guessWord) != 5:
-            print('Please enter a 5 character word')
-            continue
         else:
             green_count = 0
             yellow_count = 0
