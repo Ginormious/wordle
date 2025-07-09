@@ -1,7 +1,7 @@
 import random, os, math
 
 words = ['Genius', 'Magnificent', 'Impressive', 'Splendid', 'Great', 'Phew']
-
+tryNumber = ["first", "second", "third", "fourth", "fifth", 'sixth']
 wordDictionary = {"a":[],"b":[],"c":[],"d":[],"e":[],"f":[],"g":[],"h":[],"i":[],"j":[],"k":[],"l":[],"m":[],"n":[],"o":[],"p":[],"q":[],"r":[],"s":[],"t":[],"u":[],"v":[],"w":[],"x":[],"y":[],"z":[]}
 letter = []
 random_word = ""
@@ -28,10 +28,9 @@ def game():
     guessNum = 1
     guessWord = ""
     while guessNum < 7:
-        print(f"{CYAN}Enter your "+"{} guess:".format(str(guessNum))+f"{RESET}", end = "")
+        print(f"{CYAN}Enter your "+"{} guess:".format(tryNumber[guessNum-1])+f"{RESET}", end = "")
         guessWord = input()
         if guessWord == random_word:
-        
             print(words[guessNum - 1])
             break
         if len(guessWord) != 5:
@@ -39,12 +38,14 @@ def game():
             continue
         else:
             for i in range(len(random_word)):
+                s = guessWord[i]
                 if guessWord[i] == random_word[i]:
-                    print(str(guessWord[i]), 'Is', 'Green')
+                    print(f"{GREEN}"+s+f"{RESET}", end="")
                 elif guessWord[i] in random_word:
-                    print(str(guessWord[i]), 'Is', 'Yellow')
+                    print(f"{YELLOW}"+s+f"{RESET}", end="")
                 else:
-                    print(str(guessWord[i]), 'Is', 'Gray')
+                    print(f"{RESET}"+s+f"{RESET}", end="")
+            print()
         guessNum += 1
     print("The word was", str(random_word))
 
@@ -58,4 +59,3 @@ while not gameover:
     if(over.lower()=="n"):
         gameover = True
         break
-    os.system("cls")
