@@ -62,7 +62,7 @@ def game():
         if len(guessWord) != 5 or not guessWord.isalpha():
             print('Please enter a 5 character word')
             continue
-        if guessWord not in wordDictionary[guessWord[0]]:
+        if guessWord not in wordDictionary2[guessWord[0]]:
             print ('Please enter a real 5 letter word')
             continue
         if guessWord == random_word:
