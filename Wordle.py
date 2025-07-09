@@ -1,5 +1,11 @@
 import random, os, math
+
 wordDictionary = {"a":[],"b":[],"c":[],"d":[],"e":[],"f":[],"g":[],"h":[],"i":[],"j":[],"k":[],"l":[],"m":[],"n":[],"o":[],"p":[],"q":[],"r":[],"s":[],"t":[],"u":[],"v":[],"w":[],"x":[],"y":[],"z":[]}
+letter = []
+random_word = ""
+GREEN = "\033[32m"
+YELLOW = "\033[33m"
+RESET = "\033[0m"
 def initializeWords():
     global wordDictionary
     with open("words.txt", 'r') as words:
@@ -8,28 +14,42 @@ def initializeWords():
             i = i.strip()
             firstLetter = i[0]
             wordDictionary[firstLetter].append(i)
-initializeWords()
-letter = []
-for i in wordDictionary.keys():
-    letter.append(i)
-print(letter)
-randomLetter = random.choice(letter)
-random_word = random.choice(wordDictionary[randomLetter])
 
-first_try = input('Enter your first guess: ')
-if first_try == random_word:
-    print("Genius")
-    quit()
-if len(first_try) != 5:
-    print('Please enter a 5 character word')
-else:
-    for i in range(len(random_word)):
-        if first_try[i] == random_word[i]:
-            print(str(first_try[i]), 'Is', 'Green')
-        elif first_try[i] in random_word:
-            print(str(first_try[i]), 'Is', 'Yellow')
+def getWord():
+    global letter, random_word
+    for i in wordDictionary.keys():
+        letter.append(i)
+    randomLetter = random.choice(letter)
+    random_word = random.choice(wordDictionary[randomLetter])
+def game():
+    guessNum = 1
+    guessWord = ""
+    while guessNum < 7:
+        print("Enter your {} guess:".format(str(guessNum)), end = "")
+        guessWord = input()
+        if guessWord == random_word:
+        
+            print("Genius")
+            break
+        if len(guessWord) != 5:
+            print('Please enter a 5 character word')
+            continue
         else:
-            print(str(first_try[i]), 'Is', 'Gray')
+            for i in range(len(random_word)):
+                if guessWord[i] == random_word[i]:
+                    print(str(guessWord[i]), 'Is', 'Green')
+                elif guessWord[i] in random_word:
+                    print(str(guessWord[i]), 'Is', 'Yellow')
+                else:
+                    print(str(guessWord[i]), 'Is', 'Gray')
+        guessNum += 1
+    print("The word was", str(random_word))
+initializeWords()
+getWord()
+game()
+"""
+first_try = input('Enter your first guess: ')
+
 
 second_try = input('Enter your second guess: ')
 if second_try == random_word:
@@ -106,4 +126,5 @@ else:
         else:
             print(str(sixth_try[i]), 'Is', 'Gray')
 
-print("The word was", str(random_word))
+
+"""
