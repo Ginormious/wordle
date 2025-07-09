@@ -1,5 +1,7 @@
 import random, os, math
 
+words = ['Genius', 'Magnificent', 'Impressive', 'Spelndid', 'Great', 'Phew']
+
 wordDictionary = {"a":[],"b":[],"c":[],"d":[],"e":[],"f":[],"g":[],"h":[],"i":[],"j":[],"k":[],"l":[],"m":[],"n":[],"o":[],"p":[],"q":[],"r":[],"s":[],"t":[],"u":[],"v":[],"w":[],"x":[],"y":[],"z":[]}
 letter = []
 random_word = ""
@@ -29,7 +31,7 @@ def game():
         guessWord = input()
         if guessWord == random_word:
         
-            print("Genius")
+            print(words[guessNum - 1])
             break
         if len(guessWord) != 5:
             print('Please enter a 5 character word')
