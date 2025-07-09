@@ -9,7 +9,7 @@ def initializeWords():
             firstLetter = i[0]
             wordDictionary[firstLetter].append(i)
 initializeWords()
-letter = [] 
+letter = []
 for i in wordDictionary.keys():
     letter.append(i)
 randomLetter = random.choice(letter)
@@ -18,6 +18,7 @@ random_word = random.choice(wordDictionary[randomLetter])
 first_try = input('Enter your first guess: ')
 if first_try == random_word:
     print("Genius")
+    print(random_word)
     quit()
 if len(first_try) != 5:
     print('Please enter a 5 character word')
@@ -33,6 +34,7 @@ else:
 second_try = input('Enter your second guess: ')
 if second_try == random_word:
     print("Magnificent")
+    print(random_word)
     quit()
 if len(second_try) != 5:
     print('Please enter a 5 character word')
@@ -48,6 +50,7 @@ else:
 third_try = input('Enter your third guess: ')
 if third_try == random_word:
     print("Impressive")
+    print(random_word)
     quit()
 if len(third_try) != 5:
     print('Please enter a 5 character word')
@@ -63,6 +66,7 @@ else:
 fourth_try = input('Enter your fourth guess: ')
 if fourth_try == random_word:
     print("Splendid")
+    print(random_word)
     quit()
 if len(fourth_try) != 5:
     print('Please enter a 5 character word')
@@ -78,6 +82,7 @@ else:
 fifth_try = input('Enter your fifth guess: ')
 if fifth_try == random_word:
     print("Great")
+    print(random_word)
     quit()
 if len(fifth_try) != 5:
     print('Please enter a 5 character word')
@@ -93,6 +98,7 @@ else:
 sixth_try = input('Enter your sixth guess: ')
 if sixth_try == random_word:
     print("Phew")
+    print(random_word)
     quit()
 if len(sixth_try) != 5:
     print('Please enter a 5 character word')
