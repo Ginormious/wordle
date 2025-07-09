@@ -24,24 +24,25 @@ def getWord():
 def game():
     guessNum = 1
     guessWord = ""
+    winWords = ["", "Genius", "Magnificent", "Impressive", "Splendid", "Great", "Phew"]
     while guessNum < 7:
         print("Enter your {} guess:".format(str(guessNum)), end = "")
         guessWord = input()
         if guessWord == random_word:
-        
-            print("Genius")
-            break
+            print(str(winWords[guessNum]))
         if len(guessWord) != 5:
             print('Please enter a 5 character word')
             continue
         else:
             for i in range(len(random_word)):
+                s = str(guessWord[i])
                 if guessWord[i] == random_word[i]:
-                    print(str(guessWord[i]), 'Is', 'Green')
+                    print(f"{GREEN}"+s+f"{RESET}", end ="")
                 elif guessWord[i] in random_word:
-                    print(str(guessWord[i]), 'Is', 'Yellow')
+                    print(f"{YELLOW}"+s+f"{RESET}", end ="")
                 else:
-                    print(str(guessWord[i]), 'Is', 'Gray')
+                    print(f"{RESET}"+s+f"{RESET}", end ="")
+            print()
         guessNum += 1
     print("The word was", str(random_word))
 initializeWords()
