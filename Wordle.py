@@ -3,6 +3,7 @@ import random, os, math
 words = ['Genius', 'Magnificent', 'Impressive', 'Splendid', 'Great', 'Phew']
 tryNumber = ["first", "second", "third", "fourth", "fifth", 'sixth']
 wordDictionary = {"a":[],"b":[],"c":[],"d":[],"e":[],"f":[],"g":[],"h":[],"i":[],"j":[],"k":[],"l":[],"m":[],"n":[],"o":[],"p":[],"q":[],"r":[],"s":[],"t":[],"u":[],"v":[],"w":[],"x":[],"y":[],"z":[]}
+wordDictionary2 = {"a":[],"b":[],"c":[],"d":[],"e":[],"f":[],"g":[],"h":[],"i":[],"j":[],"k":[],"l":[],"m":[],"n":[],"o":[],"p":[],"q":[],"r":[],"s":[],"t":[],"u":[],"v":[],"w":[],"x":[],"y":[],"z":[]}
 numlist = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
 letter = []
 random_word = ""
@@ -36,6 +37,14 @@ def initializeWords():
             i = i.strip()
             firstLetter = i[0]
             wordDictionary[firstLetter].append(i)
+def initializeWords2():
+    global wordDictionary2
+    with open("words.txt", 'r') as words:
+        for i in words:
+            i = i.lower()
+            i = i.strip()
+            firstLetter = i[0]
+            wordDictionary2[firstLetter].append(i)
 
 def getWord():
     global letter, random_word
@@ -52,6 +61,9 @@ def game():
         guessWord = guessWord.lower()
         if len(guessWord) != 5 or not guessWord.isalpha():
             print('Please enter a 5 character word')
+            continue
+        if guessWord not in wordDictionary[guessWord[0]]:
+            print ('Please enter a real 5 letter word')
             continue
         if guessWord == random_word:
             print(words[guessNum - 1])
@@ -78,6 +90,7 @@ def game():
 
 gameover = False
 initializeWords()
+initializeWords2()
 while not gameover:
     getWord()
     game()
