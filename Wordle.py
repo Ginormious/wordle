@@ -81,7 +81,7 @@ initializeWords()
 while not gameover:
     getWord()
     game()
-    over = input("Another Game?(y/n):")
-    if(over.lower()=="n"):
+    over = input("Another Game? (y/n):")
+    if(over.lower() != "y"):
         gameover = True
         break
