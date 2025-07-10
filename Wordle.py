@@ -74,10 +74,10 @@ def game():
         guessWord = input()
         guessWord = guessWord.lower()
         if len(guessWord) != 5 or not guessWord.isalpha():
-            print('Please enter a 5 character word')
+            print('Please enter a real 5 letter word')
             continue
         if guessWord not in wordDictionary2[guessWord[0]]:
-            print ('Please enter a real 5 letter word')
+            print ('Sry bro, we cant find the word in our 5000 words dictionary, maybe try something else')
             continue
         if guessWord == random_word:
             print(words[guessNum - 1])
