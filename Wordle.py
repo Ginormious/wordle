@@ -112,13 +112,12 @@ while True:
     bet_size = input("Enter your bet size: ")
     if bet(player_balance,bet_size)!=False:
         player_balance -= int(bet_size)
-        print(player_balance)
         getWord()
-        print(random_word)
+        #print(random_word)
         result=game()
         if result:
             player_balance+=int(bet_size)*2
-            print("Your balance has doubled, reach 7 to win!!")
+            print("Your balance has increased by {}, reach 7 to win!!".format(int(bet_size)*2))
             print(player_balance)
         if not result:
             player_balance-=int(bet_size)
