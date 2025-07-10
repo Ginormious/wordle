@@ -11,6 +11,20 @@ CYAN="\033[36m"
 GREEN = "\033[32m"
 YELLOW = "\033[33m"
 RESET = "\033[0m"
+def bet(player_balance, bet_size):
+    try:
+        number = int(bet_size)
+        if number<0:
+            print("Please enter a bet that's an integer greater than 0")
+            return False
+        elif number>player_balance:
+            print("You're too poor lol")
+            return False
+        else:
+            return bet_size
+    except ValueError:
+        print("Please enter a bet size that's a positive integer")
+        return False
 def good_or_bad(guessWord,green_count,yellow_count):
     letter_frequencies = {'s': 10.4,'e': 10.3,'a': 8.9,'o': 6.7,'r': 6.5,'i': 5.9,'l': 5.5,'t': 5.2,'n': 4.5,'d': 3.9,'u': 3.8,'c': 3.3,'y': 3.1,'p': 3.1,'m': 3.0,'h': 2.7,'g': 2.5,'b': 2.5,'k': 2.1,'f': 1.8,'w': 1.5,'v': 1.1,'z': 0.6,'x': 0.5,'j': 0.4,'q': 0.2}
     Green_score=10
@@ -67,7 +81,7 @@ def game():
             continue
         if guessWord == random_word:
             print(words[guessNum - 1])
-            break
+            return True
         else:
             green_count = 0
             yellow_count = 0
@@ -86,15 +100,38 @@ def game():
             print()
         guessNum += 1
     print("The word was", str(random_word))
+    return False
 
 
-gameover = False
 initializeWords()
 initializeWords2()
-while not gameover:
-    getWord()
-    game()
-    over = input("Another Game? (y/n):")
-    if(over.lower() != "y"):
-        gameover = True
-        break
+player_balance=3
+
+while True:
+    print("Your balance: "+ str(player_balance))
+    bet_size = input("Enter your bet size: ")
+    if bet(player_balance,bet_size)!=False:
+        player_balance -= int(bet_size)
+        getWord()
+        result=game()
+        if result:
+            player_balance+=int(bet_size*2)
+            print("You're balance has doubled, reach 7 to win!!")
+        if not result:
+            player_balance-=int(bet_size)
+            print("Aww dang it, you just lost your bet, reach 0 and you'll LOSE!")
+        if player_balance <= 0:
+            print ("You lost! Womp Womp, try harder next time ;)")
+            break
+        if player_balance >= 7:
+            print ("Yaaay you won! You're the best Wordle player in the world")
+            break
+    else:
+        continue
+
+
+
+
+
+
+
