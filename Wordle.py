@@ -113,7 +113,7 @@ while True:
     if bet(player_balance,bet_size)!=False:
         player_balance -= int(bet_size)
         getWord()
-        #print(random_word)
+        #   print(random_word)
         result=game()
         if result:
             player_balance+=int(bet_size)*2
