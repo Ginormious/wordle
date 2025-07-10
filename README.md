@@ -1,1 +1,1 @@
-BTW, use Github Desktop to commit and change the files. Github desktop is just a github application that replaces using terminal commands with visual UI, it's much easier to use. 
+A classic game of wordle but with some new features. If you're an avid enjoyer of the act of risking something of value based on a chance outcome that may be or may not be in of your control or influence with the understanding that they will either gain increased value or lose their original value determined by the specific outcome, you'll enjoy this game. 
