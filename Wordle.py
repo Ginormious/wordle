@@ -1,5 +1,4 @@
 import random, os, math
-
 words = ['Genius', 'Magnificent', 'Impressive', 'Splendid', 'Great', 'Phew']
 tryNumber = ["first", "second", "third", "fourth", "fifth", 'sixth']
 wordDictionary = {"a":[],"b":[],"c":[],"d":[],"e":[],"f":[],"g":[],"h":[],"i":[],"j":[],"k":[],"l":[],"m":[],"n":[],"o":[],"p":[],"q":[],"r":[],"s":[],"t":[],"u":[],"v":[],"w":[],"x":[],"y":[],"z":[]}
@@ -113,7 +112,6 @@ while True:
     if bet(player_balance,bet_size)!=False:
         player_balance -= int(bet_size)
         getWord()
-        #   print(random_word)
         result=game()
         if result:
             player_balance+=int(bet_size)*2

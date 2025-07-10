@@ -2176,6 +2176,7 @@ riven
 river
 rivet
 roads
+roate
 roams
 roars
 roast
