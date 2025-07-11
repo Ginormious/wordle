@@ -174,14 +174,14 @@ while True:
         result=game()
         if result:
             player_balance+=int(bet_size)*2
-            print("Your balance has increased by {}, reach 7 to win!!".format(int(bet_size)*2))
+            print("Your balance has increased by {}, reach 10 to win!!".format(int(bet_size)*2))
             print(player_balance)
         if not result:
             print("Aww dang it, you just lost your bet, reach 0 and you'll LOSE!")
         if player_balance <= 0:
             print ("You lost! Womp Womp, try harder next time ;)")
             break
-        if player_balance >= 7:
+        if player_balance >= 10:
             print ("Yaaay you won! You're the best Wordle player in the world")
             break
     else:
