@@ -177,7 +177,6 @@ while True:
             print("Your balance has increased by {}, reach 7 to win!!".format(int(bet_size)*2))
             print(player_balance)
         if not result:
-            player_balance-=int(bet_size)
             print("Aww dang it, you just lost your bet, reach 0 and you'll LOSE!")
         if player_balance <= 0:
             print ("You lost! Womp Womp, try harder next time ;)")
