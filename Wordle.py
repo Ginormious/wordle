@@ -166,7 +166,7 @@ initializeWords2()
 player_balance=3
 
 while True:
-    print("Your balance: "+ str(player_balance))
+    print("Your score: "+ str(player_balance))
     bet_size = input("Enter your bet size: ")
     if bet(player_balance,bet_size)!=False:
         player_balance -= int(bet_size)
@@ -174,7 +174,7 @@ while True:
         result=game()
         if result:
             player_balance+=int(bet_size)*2
-            print("Your balance has increased by {}, reach 10 to win!!".format(int(bet_size)*2))
+            print("Your score has increased by {}, reach 10 to win!!".format(int(bet_size)*2))
             print(player_balance)
         if not result:
             print("Aww dang it, you just lost your bet, reach 0 and you'll LOSE!")
