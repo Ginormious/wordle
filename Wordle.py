@@ -160,7 +160,7 @@ def game():
     print("The word was", str(random_word))
     return False
 
-
+#int main()
 initializeWords()
 initializeWords2()
 player_balance=3
@@ -186,7 +186,6 @@ while True:
             break
     else:
         continue
-
 
 
 
