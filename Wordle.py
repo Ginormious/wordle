@@ -124,7 +124,7 @@ def game(): # where the magic happens
             green_count = 0
             yellow_count = 0 
             gray_count = 0
-            if guessNum==1:
+            if guessNum==1:#first guess
                 for i in range(len(random_word)): #loop through the word
                     s = guessWord[i]
                     if guessWord[i] == random_word[i]: #check if the letter is on the right spot
@@ -140,7 +140,7 @@ def game(): # where the magic happens
                 good_or_bad_1st(guessWord, green_count, yellow_count,gray_count) #call on the function to determine how good the guess is.
                 print() #skip a line
                 guessNum += 1 # move on to next guess
-                previous_words.append(guessWord) # and current guess to the list
+                previous_words.append(guessWord) # add current guess to the list
             else:
                 for i in range(len(random_word)): #same as above
                     s = guessWord[i]
@@ -158,7 +158,7 @@ def game(): # where the magic happens
                 guessNum += 1
                 previous_words
     print("The word was", str(random_word))
-    return False #ran out of tries
+    return False #user lost(ran out of tries)
 
 #int main()
 initializeWords()
