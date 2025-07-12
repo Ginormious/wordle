@@ -80,69 +80,69 @@ def good_or_bad_1st(guessWord,green_count,yellow_count,gray_count):
         print("Bad Word")
     elif sum_score >= 14.228:
         print("Horrendous word")
-def initializeWords():
-    global wordDictionary
-    with open("3000 wordle words.txt", 'r') as words:
+def initializeWords(): # initiallize the dictionary that holds the letter that we choose the word to guesss from
+    global wordDictionary # declare global so the program know wordDictionary is not a local variable
+    with open("3000 wordle words.txt", 'r') as words: # open text file in read mode
         for i in words:
-            i = i.lower()
+            i = i.lower() #read the text file and make them all lowercase
             i = i.strip()
-            firstLetter = i[0]
-            wordDictionary[firstLetter].append(i)
-def initializeWords2():
-    global wordDictionary2
-    with open("words.txt", 'r') as words:
+            firstLetter = i[0] #sorting them by alphabet 
+            wordDictionary[firstLetter].append(i) #adding the word to dictionary
+def initializeWords2(): #initialize our word bank to make sure the word the user entered is a valid word
+    global wordDictionary2 
+    with open("words.txt", 'r') as words: # same as above
         for i in words:
             i = i.lower()
             i = i.strip()
             firstLetter = i[0]
             wordDictionary2[firstLetter].append(i)
 
-def getWord():
-    global letter, random_word
+def getWord(): #get a random word from wordDictionary
+    global letter, random_word #declare global so other functions can use it
     for i in wordDictionary.keys():
-        letter.append(i)
-    randomLetter = random.choice(letter)
-    random_word = random.choice(wordDictionary[randomLetter])
-def game():
-    guessNum = 1
-    guessWord = ""
-    previous_words = []
+        letter.append(i) #get all the letters 
+    randomLetter = random.choice(letter) #get an alphabet to choose the word from
+    random_word = random.choice(wordDictionary[randomLetter]) # get a word from the list containing all the words starting with randomLetter
+def game(): # where the magic happens
+    guessNum = 1 #variable to keep track of guesses 
+    guessWord = "" #the word to guess for
+    previous_words = [] #what the previous guesses by the user is 
     while guessNum < 7:
-        print(f"{CYAN}Enter your "+"{} guess:".format(tryNumber[guessNum-1])+f"{RESET}", end = "")
+        print(f"{CYAN}Enter your "+"{} guess:".format(tryNumber[guessNum-1])+f"{RESET}", end = "") #change the font color to cyan cuz why not and ask the user for an input(guess)
         guessWord = input()
-        guessWord = guessWord.lower()
-        if len(guessWord) != 5 or not guessWord.isalpha():
+        guessWord = guessWord.lower() #make all inputs lowercase to prevent errors in program
+        if len(guessWord) != 5 or not guessWord.isalpha(): #make sure the input is 5 letters long and not a number or special character
             print('Please enter a real 5 letter word')
             continue
-        if guessWord not in wordDictionary2[guessWord[0]]:
+        if guessWord not in wordDictionary2[guessWord[0]]: #make sure the input is a valid 5 letter word and not something random like asdfs
             print ('Sry bro, we cant find the word in our 5000+ words dictionary, maybe try another word')
             continue
-        if guessWord == random_word:
-            print(words[guessNum - 1])
-            return True
-        else:
+        if guessWord == random_word: # check to see if the guess is correct
+            print(words[guessNum - 1]) #this is the respons users get depending on which guess they got the word correct
+            return True # word is guessed, break out of loop
+        else: #if the word is valid and not the right word
             green_count = 0
-            yellow_count = 0
+            yellow_count = 0 
             gray_count = 0
             if guessNum==1:
-                for i in range(len(random_word)):
+                for i in range(len(random_word)): #loop through the word
                     s = guessWord[i]
-                    if guessWord[i] == random_word[i]:
-                        print(f"{GREEN}" + s + f"{RESET}", end="")
+                    if guessWord[i] == random_word[i]: #check if the letter is on the right spot
+                        print(f"{GREEN}" + s + f"{RESET}", end="") #set font color to green and back to white after printing the letter
                         green_count += 1
-                    elif guessWord[i] in random_word:
-                        print(f"{YELLOW}" + s + f"{RESET}", end="")
+                    elif guessWord[i] in random_word: #check if the letter is in the random word
+                        print(f"{YELLOW}" + s + f"{RESET}", end="") #print letter in yellow and back to white after
                         yellow_count += 1
                     else:
-                        print(f"{RESET}" + s + f"{RESET}", end="")
+                        print(f"{RESET}" + s + f"{RESET}", end="") # letter not in random word 
                         gray_count += 1
-                print()
-                good_or_bad_1st(guessWord, green_count, yellow_count,gray_count)
-                print()
-                guessNum += 1
-                previous_words.append(guessWord)
+                print() #skip a line after
+                good_or_bad_1st(guessWord, green_count, yellow_count,gray_count) #call on the function to determine how good the guess is.
+                print() #skip a line
+                guessNum += 1 # move on to next guess
+                previous_words.append(guessWord) # and current guess to the list
             else:
-                for i in range(len(random_word)):
+                for i in range(len(random_word)): #same as above
                     s = guessWord[i]
                     if guessWord[i] == random_word[i]:
                         print(f"{GREEN}" + s + f"{RESET}", end="")
@@ -153,35 +153,35 @@ def game():
                     else:
                         print(f"{RESET}" + s + f"{RESET}", end="")
                 print()
-                good_or_bad(guessWord, green_count, yellow_count,previous_words)
+                good_or_bad(guessWord, green_count, yellow_count,previous_words) #this time its not the first guess, so it calls on the function that determine how good it is based on previous guesses and the correct word.
                 print()
                 guessNum += 1
                 previous_words
     print("The word was", str(random_word))
-    return False
+    return False #ran out of tries
 
 #int main()
 initializeWords()
-initializeWords2()
+initializeWords2() #call on function to initialize dictionary
 player_balance=3
 
 while True:
-    print("Your score: "+ str(player_balance))
+    print("Your score: "+ str(player_balance)) #the score/bet system
     bet_size = input("Enter your bet size: ")
     if bet(player_balance,bet_size)!=False:
-        player_balance -= int(bet_size)
-        getWord()
-        result=game()
+        player_balance -= int(bet_size) #remove bet from balance
+        getWord() # get the random word
+        result=game() #play game and see if user guessed the correct word
         if result:
-            player_balance+=int(bet_size)*2
+            player_balance+=int(bet_size)*2 # when won add the points back with bonus
             print("Your score has increased by {}, reach 10 to win!!".format(int(bet_size)*2))
             print(player_balance)
         if not result:
-            print("Aww dang it, you just lost your bet, reach 0 and you'll LOSE!")
+            print("Aww dang it, you just lost your bet, reach 0 and you'll LOSE!") #when did not guess the word
         if player_balance <= 0:
-            print ("You lost! Womp Womp, try harder next time ;)")
+            print ("You lost! Womp Womp, try harder next time ;)") #lose condition points <0
             break
-        if player_balance >= 10:
+        if player_balance >= 10: #win condition, points >10
             print ("Yaaay you won! You're the best Wordle player in the world")
             break
     else:
